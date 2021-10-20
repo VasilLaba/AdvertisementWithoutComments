@@ -22,5 +22,5 @@ CREATE TABLE advertisement
     author_id INTEGER NOT NULL,
     created_date DATE NOT NULL,
     FOREIGN KEY (author_id) REFERENCES author (id),
-    FOREIGN KEY (category_id) REFERENCES chategory (id)
+    FOREIGN KEY (category_id) REFERENCES category (id)
 );

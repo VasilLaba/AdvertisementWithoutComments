@@ -4,7 +4,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import com.advertisement.config.WebConfig;
 
-public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class  MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

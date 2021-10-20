@@ -18,8 +18,12 @@ import com.advertisement.service.CategoryService;
 @CrossOrigin(origins = "*")
 @RestController
 public class CategoryController {
-    @Autowired
+
     private CategoryService categoryService;
+    @Autowired
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     /*---Add new category---*/
     @PostMapping("/category")

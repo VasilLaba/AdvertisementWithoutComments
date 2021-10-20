@@ -12,8 +12,12 @@ import com.advertisement.model.Advertisement;
 @Service
 @Transactional(readOnly = true)
 public class AdvertisementServiceImp implements AdvertisementService {
-    @Autowired
+
     private AdvertisementDao advertisementDao;
+    @Autowired
+    public AdvertisementServiceImp(AdvertisementDao advertisementDao) {
+        this.advertisementDao = advertisementDao;
+    }
 
     @Transactional
     @Override

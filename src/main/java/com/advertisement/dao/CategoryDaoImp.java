@@ -15,8 +15,12 @@ import java.util.List;
 
 @Repository
 public class CategoryDaoImp implements CategoryDao{
-    @Autowired
+
     private SessionFactory sessionFactory;
+    @Autowired
+    public CategoryDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public long save(Category category) {

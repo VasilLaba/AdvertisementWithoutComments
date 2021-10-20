@@ -16,8 +16,13 @@ import com.advertisement.model.Advertisement;
 
 @Repository
 public class AdvertisementDaoImp implements AdvertisementDao{
-    @Autowired
+
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public AdvertisementDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public long save(Advertisement advertisement) {
@@ -46,7 +51,7 @@ public class AdvertisementDaoImp implements AdvertisementDao{
         Session session = sessionFactory.getCurrentSession();
         Advertisement advertisement2 = session.byId(Advertisement.class).load(id);
         advertisement2.setTitle(advertisement.getTitle());
-        advertisement2.setAuthor(advertisement.getAuthor());
+//        advertisement2.setAuthor(advertisement.getAuthor());
         session.flush();
     }
 

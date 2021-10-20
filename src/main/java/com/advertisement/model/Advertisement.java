@@ -6,19 +6,21 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "advertisement")
 public class Advertisement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String title;
     private String description;
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="id")
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
     private Category category;
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="id")
+
+    @ManyToOne
+    @JoinColumn(name="author_id", nullable=false)
     private Author author;
     private LocalDateTime createDate;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     public int getId() {
         return id;
     }

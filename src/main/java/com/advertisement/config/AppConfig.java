@@ -12,16 +12,22 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import static org.hibernate.cfg.Environment.*;
 
-@Configuration
-@PropertySource("classpath:hibernate.properties")
+@Configuration  //позначає що файл конфігурує наш проект
+@PropertySource("classpath:hibernate.properties") //вказує на файл пропертів
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.advertisement.dao"),
-        @ComponentScan("com.advertisement.service") })
+//ComponentScans сканує проект і показує де брати звязки
+@ComponentScans(value = { @ComponentScan("com.advertisement.dao"), @ComponentScan("com.advertisement.service") }) //
 public class AppConfig {
-    @Autowired
+
     private Environment env;
+
+    @Autowired   //автозаповнення, автоматично підєднує клас з анотацією @Component
+    public AppConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
@@ -29,10 +35,10 @@ public class AppConfig {
 
         Properties props = new Properties();
         // Setting JDBC properties
-        props.put(DRIVER, env.getProperty("postgres.driver"));
-        props.put(URL, env.getProperty("postgres.url"));
-        props.put(USER, env.getProperty("postgres.user"));
-        props.put(PASS, env.getProperty("postgres.password"));
+        props.put(DRIVER, env.getProperty("hibernate.connection.driver_class"));
+        props.put(URL, env.getProperty("hibernate.connection.url"));
+        props.put(USER, env.getProperty("hibernate.connection.username"));
+        props.put(PASS, env.getProperty("hibernate.connection.password"));
 
         // Setting Hibernate properties
         props.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));

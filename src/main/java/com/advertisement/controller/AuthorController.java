@@ -19,8 +19,12 @@ import com.advertisement.service.AuthorService;
 @CrossOrigin(origins = "*")
 @RestController
 public class AuthorController {
-    @Autowired
+
     private AuthorService authorService;
+    @Autowired
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     /*---Add new author---*/
     @PostMapping("/author")
@@ -31,14 +35,14 @@ public class AuthorController {
     }
 
     /*---Get a author by id---*/
-    @GetMapping("/author/{id}")
-    public ResponseEntity<Author> get(@PathVariable("id") long id) {
+    @GetMapping("/author/get/{id}")
+    public ResponseEntity<Author> get(@PathVariable("id") int id) {
         Author author = authorService.get(id);
         return ResponseEntity.ok().body(author);
     }
 
     /*---get all authors---*/
-    @GetMapping("/author")
+    @GetMapping("/author/getall")
     public ResponseEntity<List<Author>> list() {
         List<Author> authors = authorService.list();
         return ResponseEntity.ok().body(authors);

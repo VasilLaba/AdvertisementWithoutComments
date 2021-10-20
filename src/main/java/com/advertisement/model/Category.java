@@ -2,17 +2,21 @@ package com.advertisement.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
 public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String name;
     private String description;
     private LocalDateTime creationDate;
+    @OneToMany(mappedBy="category")
+    private List<Advertisement> advertisements;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     public int getId() {
         return id;
     }
@@ -43,5 +47,13 @@ public class Category {
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public List<Advertisement> getAdvertisements() {
+        return advertisements;
+    }
+
+    public void setAdvertisements(List<Advertisement> advertisements) {
+        this.advertisements = advertisements;
     }
 }

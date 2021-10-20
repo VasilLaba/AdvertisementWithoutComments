@@ -12,7 +12,12 @@ import com.advertisement.model.Author;
 @Service
 @Transactional(readOnly = true)
 public class AuthorServiceImp implements AuthorService {
+
     @Autowired
+    public AuthorServiceImp(AuthorDao authorDao) {
+        this.authorDao = authorDao;
+    }
+
     private AuthorDao authorDao;
 
     @Transactional

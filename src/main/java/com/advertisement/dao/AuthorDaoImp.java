@@ -15,8 +15,13 @@ import java.util.List;
 
 @Repository
 public class AuthorDaoImp implements AuthorDao{
-    @Autowired
+
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public AuthorDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public long save(Author author) {
@@ -46,6 +51,7 @@ public class AuthorDaoImp implements AuthorDao{
         Author author2 = session.byId(Author.class).load(id);
         author2.setFirstName(author.getFirstName());
         author2.setLastName(author.getLastName());
+        author2.setPassword(author.getPassword());
         session.flush();
     }
 

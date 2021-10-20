@@ -19,11 +19,15 @@ import com.advertisement.service.AdvertisementService;
 @CrossOrigin(origins = "*")
 @RestController
 public class AdvertisementController {
-    @Autowired
+
     private AdvertisementService advertisementService;
+    @Autowired
+    public AdvertisementController(AdvertisementService advertisementService) {
+        this.advertisementService = advertisementService;
+    }
 
     /*---Add new advertisement---*/
-    @PostMapping("/advertisement")
+    @PostMapping("/advertisement/add")
     public ResponseEntity<?> save(@RequestBody Advertisement advertisement) {
         System.out.println("the json value of advertisement is :::::: "+advertisement);
         long id = advertisementService.save(advertisement);
@@ -38,7 +42,7 @@ public class AdvertisementController {
     }
 
     /*---get all advertisements---*/
-    @GetMapping("/advertisement")
+    @GetMapping("/advertisement/getall")
     public ResponseEntity<List<Advertisement>> list() {
         List<Advertisement> advertisements = advertisementService.list();
         return ResponseEntity.ok().body(advertisements);

@@ -11,8 +11,12 @@ import com.advertisement.model.Category;
 @Service
 @Transactional(readOnly = true)
 public class CategoryServiceImp implements CategoryService {
-    @Autowired
+
     private CategoryDao categoryDao;
+    @Autowired
+    public CategoryServiceImp(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
 
     @Transactional
     @Override
